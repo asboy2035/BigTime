@@ -12,51 +12,45 @@ struct TimerView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(timerViewModel.formattedTime)
-                .font(.system(size: 60, weight: .bold, design: .monospaced))
-                .padding()
+                .font(.system(size: 28, weight: .bold, design: .monospaced))
+                .padding(.bottom)
+                .padding(.horizontal)
             
             TextField("Enter task", text: $timerViewModel.currentTask)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 0)
             
             HStack {
                 Button(action: timerViewModel.toggleTimer) {
-                    Text(timerViewModel.isRunning ? "Pause" : "Start")
-                        .font(.title)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    HStack(spacing: 4) {
+                        Image(systemName: timerViewModel.isRunning ? "pause" : "play.fill")
+                            .padding(.vertical, 5)
+                        Text(timerViewModel.isRunning ? "Pause" : "Start")
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
                 Button(action: timerViewModel.resetTimer) {
-                    Text("Reset")
-                        .font(.title)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    HStack(spacing: 4) {
+                        Image(systemName: "xmark")
+                            .padding(.vertical, 5)
+                        Text("Reset")
+                            .font(.body)
+                    }
+                    .frame(alignment: .leading)
                 }
             }
-            .padding()
-            
-            Spacer()
-            
-            NavigationLink(destination: HistoryView()) {
-                Text("View History")
-                    .font(.title2)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(10)
-            }
+            .padding(.horizontal)
         }
-        .padding()
-        .background(
-            VisualEffectBlur()
-                .ignoresSafeArea()
-        )
+        Spacer()
+        .navigationTitle("Timer")
+//        .background(
+//            VisualEffectBlur()
+//                .ignoresSafeArea()
+//        )
     }
 }

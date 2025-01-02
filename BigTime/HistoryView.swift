@@ -5,7 +5,6 @@
 //  Created by ash on 1/2/25.
 //
 
-
 import SwiftUI
 
 struct HistoryView: View {
@@ -48,23 +47,50 @@ struct HistoryView: View {
                 }
             }
         }
-        .navigationTitle("History")
+        .navigationTitle("BigTime")
         .sheet(item: $editingSession) { session in
             NavigationView {
-                Form {
-                    TextField("Session Label", text: $editedLabel)
-                }
-                .navigationTitle("Edit Session")
-                .navigationBarItems(
-                    leading: Button("Cancel") {
-                        editingSession = nil
-                    },
-                    trailing: Button("Save") {
-                        timerViewModel.updateSessionLabel(session, newLabel: editedLabel)
-                        editingSession = nil
+                VStack(spacing: 20) {
+                    Text("Edit Session")
+                        .font(.system(.title2, design: .monospaced))
+                    
+                    Form {
+                        Section {
+                            TextField("Session Label", text: $editedLabel)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                     }
-                )
+                    
+                    HStack {
+                        Button("Cancel") {
+                            editingSession = nil
+                        }
+                        Button("Save") {
+                            if let session = editingSession {
+                                timerViewModel.updateSessionLabel(session, newLabel: editedLabel)
+                            }
+                            editingSession = nil
+                        }
+                        .font(.system(size: 12, weight: .medium))
+                        .background(Color.accentColor) // Use the accent color as the background
+                        .cornerRadius(5)
+                        
+                        Button("Delete") {
+                            if let session = editingSession {
+                                timerViewModel.deleteSession(session)
+                            }
+                            editingSession = nil
+                        }
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.red) // Red color for the delete button
+                        .background(Color.red.opacity(0.5)) // Light red background
+                        .cornerRadius(5)
+                    }
+                }
+                .padding()
+                .padding(.vertical, 50)
             }
+            .frame(width: 300, height: 200, alignment: .center)
         }
     }
 }
