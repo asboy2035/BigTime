@@ -37,6 +37,9 @@ class TimerViewModel: ObservableObject {
         } else {
             stopTimer()
             saveSession()
+            // Reset after saving
+            resetTimer()
+            currentTask = ""
         }
     }
     
@@ -44,6 +47,7 @@ class TimerViewModel: ObservableObject {
         stopTimer()
         elapsedSeconds = 0
         startDate = nil
+        isRunning = false
     }
     
     private func startTimer() {
@@ -101,5 +105,19 @@ class TimerViewModel: ObservableObject {
             )
             saveSessions()
         }
+    }
+    
+    func continueFromSession(_ session: TimerSession) {
+        resetTimer()
+        elapsedSeconds = session.duration
+        currentTask = session.label
+        deleteSession(session) // delete old timer instance
+        startTimer()
+        startDate = Date()
+        isRunning = true
+    }
+    
+    func updateCurrentTime(_ newSeconds: Int) {
+        elapsedSeconds = max(0, newSeconds)
     }
 }

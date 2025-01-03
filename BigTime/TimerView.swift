@@ -26,9 +26,9 @@ struct TimerView: View {
             HStack {
                 Button(action: timerViewModel.toggleTimer) {
                     HStack(spacing: 4) {
-                        Image(systemName: timerViewModel.isRunning ? "pause" : "play.fill")
-                            .padding(.vertical, 5)
-                        Text(timerViewModel.isRunning ? "Pause" : "Start")
+                        Image(systemName: timerViewModel.isRunning ? "clock.badge.checkmark" : "play.fill")
+                            .frame(width: 15, height: 25)
+                        Text(timerViewModel.isRunning ? "Done" : "Start")
                             .font(.body)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -37,7 +37,7 @@ struct TimerView: View {
                 Button(action: timerViewModel.resetTimer) {
                     HStack(spacing: 4) {
                         Image(systemName: "xmark")
-                            .padding(.vertical, 5)
+                            .frame(width: 15, height: 25)
                         Text("Reset")
                             .font(.body)
                     }

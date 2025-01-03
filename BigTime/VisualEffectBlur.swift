@@ -12,7 +12,7 @@ struct VisualEffectBlur: NSViewRepresentable {
     func makeNSView(context: Context) -> NSVisualEffectView {
         let view = NSVisualEffectView()
         view.blendingMode = .behindWindow
-        view.material = .hudWindow
+        view.material = .headerView
         view.state = .active
         return view
     }
