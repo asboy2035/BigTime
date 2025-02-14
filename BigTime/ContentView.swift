@@ -13,17 +13,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationSplitView {
-            TimerView()
-                .environmentObject(timerViewModel)
-                .navigationSplitViewColumnWidth(min: 150, ideal: 200, max: 300)
-        } detail: {
             HistoryView()
                 .environmentObject(timerViewModel)
-                .background(
-                    VisualEffectBlur()
-                        .ignoresSafeArea()
-                )
+                .navigationSplitViewColumnWidth(min: 200, ideal: 350, max: 450)
+        } detail: {
+            TimerView()
+                .environmentObject(timerViewModel)
         }
-        .accentColor(.indigo)
+        .frame(minWidth: 700, minHeight: 400)
+        .background(VisualEffectView(material: .sidebar, blendingMode: .behindWindow).ignoresSafeArea())
     }
 }

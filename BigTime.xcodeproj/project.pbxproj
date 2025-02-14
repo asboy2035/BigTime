@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5E4206822D5FD90F00704A14 /* Luminare in Frameworks */ = {isa = PBXBuildFile; productRef = 5E4206812D5FD90F00704A14 /* Luminare */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		5E096BE22D26E36A000D15A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E4206822D5FD90F00704A14 /* Luminare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = BigTime;
 			packageProductDependencies = (
+				5E4206812D5FD90F00704A14 /* Luminare */,
 			);
 			productName = BigTime;
 			productReference = 5E096BD02D26E368000D15A7 /* BigTime.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 5E096BC72D26E368000D15A7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5E4206802D5FD90F00704A14 /* XCRemoteSwiftPackageReference "Luminare-Safe" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5E096BD12D26E368000D15A7 /* Products */;
 			projectDirPath = "";
@@ -328,6 +337,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +394,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -395,7 +406,7 @@
 				CODE_SIGN_ENTITLEMENTS = BigTime/BigTime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"BigTime/Preview Content\"";
 				DEVELOPMENT_TEAM = UCN29PZL3V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -407,7 +418,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = ash.BigTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -423,7 +434,7 @@
 				CODE_SIGN_ENTITLEMENTS = BigTime/BigTime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"BigTime/Preview Content\"";
 				DEVELOPMENT_TEAM = UCN29PZL3V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -435,7 +446,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = ash.BigTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -551,6 +562,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5E4206802D5FD90F00704A14 /* XCRemoteSwiftPackageReference "Luminare-Safe" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/asboy2035/Luminare-Safe";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5E4206812D5FD90F00704A14 /* Luminare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E4206802D5FD90F00704A14 /* XCRemoteSwiftPackageReference "Luminare-Safe" */;
+			productName = Luminare;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E096BC82D26E368000D15A7 /* Project object */;
 }

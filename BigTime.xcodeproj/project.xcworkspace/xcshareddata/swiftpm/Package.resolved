@@ -1,0 +1,15 @@
+{
+  "originHash" : "23793816994bda6a48fe63ca8bd1db406bc72ff25eb5607f2d6d34ae44461892",
+  "pins" : [
+    {
+      "identity" : "luminare-safe",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/asboy2035/Luminare-Safe",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5224d7921361bd2b8c5edfbf867b2bf6e9c9a3da"
+      }
+    }
+  ],
+  "version" : 3
+}
