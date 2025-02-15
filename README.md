@@ -2,8 +2,8 @@
 A simple macOS timer/time tracking software.
 
 BigTime has a simple and clean UI that allows for simple tracking of activities without getting lost in functions. BigTime keeps a history of your past sessions for easy viewing.
-<img width="982" alt="BigTime Home" src="https://github.com/user-attachments/assets/3885ba0f-b5fe-428b-8079-2ab3e0b900f6" />
-<img width="332" alt="Edit Session" src="https://github.com/user-attachments/assets/cfed626a-7574-4877-9ef2-b85a01748e13"/>
+
+<img width="747" alt="SCR-20250214-tbgs" src="https://github.com/user-attachments/assets/c9f5cd37-3f7d-40c2-9ae0-009fbc568a1c" />
 
 ## Usage
 Write a description (optional) and press Start. 
