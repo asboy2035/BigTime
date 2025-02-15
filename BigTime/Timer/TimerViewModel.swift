@@ -12,9 +12,17 @@ import SwiftUI
 class TimerViewModel: ObservableObject {
     @Published var elapsedSeconds: Int = 0
     @Published var isRunning: Bool = false
-    @Published var currentTask: String = ""
     @Published var sessions: [TimerSession] = []
-    
+    @Published var selectedSession: TimerSession?
+    @Published var currentTask: String = "" {
+        didSet {
+            if let session = selectedSession {
+                updateSessionLabel(session, newLabel: currentTask)
+            }
+        }
+    }
+    private let floatingController = FloatingTimerController()
+
     private var timer: Timer?
     private var startDate: Date?
     
@@ -30,17 +38,19 @@ class TimerViewModel: ObservableObject {
     }
     
     func toggleTimer() {
-        isRunning.toggle()
-        if isRunning {
-            startTimer()
-            startDate = Date()
-        } else {
-            stopTimer()
-            saveSession()
-            // Reset after saving
-            resetTimer()
-            currentTask = ""
-        }
+         isRunning.toggle()
+         if isRunning {
+             startTimer()
+             startDate = Date()
+             floatingController.showFloatingTimer(with: self)
+         } else {
+             stopTimer()
+             saveSession()
+             floatingController.hideFloatingTimer()
+             // Reset after saving
+             resetTimer()
+             currentTask = ""
+         }
     }
     
     func resetTimer() {
@@ -48,6 +58,7 @@ class TimerViewModel: ObservableObject {
         elapsedSeconds = 0
         startDate = nil
         isRunning = false
+        floatingController.hideFloatingTimer()
     }
     
     private func startTimer() {
@@ -115,6 +126,8 @@ class TimerViewModel: ObservableObject {
         startTimer()
         startDate = Date()
         isRunning = true
+        
+        floatingController.showFloatingTimer(with: self)
     }
     
     func updateCurrentTime(_ newSeconds: Int) {

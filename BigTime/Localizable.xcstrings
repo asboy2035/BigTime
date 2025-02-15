@@ -1,15 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lldh" : {
-      "shouldTranslate" : false
-    },
-    "%lldm" : {
-      "shouldTranslate" : false
-    },
-    "%llds" : {
-      "shouldTranslate" : false
-    },
     "aboutLabel" : {
       "localizations" : {
         "en" : {
@@ -40,12 +31,12 @@
         }
       }
     },
-    "cancelLabel" : {
+    "closeLabel" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cancel"
+            "value" : "Close"
           }
         }
       }
@@ -86,16 +77,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
-          }
-        }
-      }
-    },
-    "editSessionTitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edit Session"
           }
         }
       }
@@ -146,26 +127,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reset"
-          }
-        }
-      }
-    },
-    "saveLabel" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
-          }
-        }
-      }
-    },
-    "sessionLabelField" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Session Label"
           }
         }
       }

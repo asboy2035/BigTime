@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct BigTimeApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var timerViewModel = TimerViewModel()
     
     var body: some Scene {
         WindowGroup {
