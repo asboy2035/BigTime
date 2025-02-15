@@ -12,6 +12,7 @@ struct TimerSession: Identifiable, Codable {
     let startDate: Date
     let duration: Int
     var label: String
+    var isPinned: Bool = false
     
     var formattedDuration: String {
         let hours = duration / 3600

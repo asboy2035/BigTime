@@ -75,17 +75,40 @@ struct TimerView: View {
             
             if timerViewModel.selectedSession != nil {
                 LuminareSection {
-                    Button(action: {
-                        timerViewModel.selectedSession = nil
-                        timerViewModel.resetTimer()
-                    }) {
-                        Label("closeLabel", systemImage: "xmark")
+                    HStack(spacing: 2) {
+                        if let session = timerViewModel.selectedSession {
+                            Button(action: {
+                                timerViewModel.togglePin(for: session)
+                            }) {
+                                Label("pinLabel", systemImage: session.isPinned ? "pin.slash.fill" : "pin.fill")
+                            }
+                            .background(Color.accentColor.opacity(0.2))
+                        }
+                        
+                        Button(action: {
+                            timerViewModel.selectedSession = nil
+                            timerViewModel.resetTimer()
+                        }) {
+                            Label("closeLabel", systemImage: "xmark")
+                        }
                     }
                 }
                 .frame(height: 35)
             }
         }
         .buttonStyle(LuminareButtonStyle())
+        .toolbar() {
+            if timerViewModel.selectedSession != nil {
+                ToolbarItem(placement: .automatic) {
+                    Button(action: {
+                        timerViewModel.selectedSession = nil
+                        timerViewModel.resetTimer()
+                    }) {
+                        Label("homeLabel", systemImage: "house")
+                    }
+                }
+            }
+        }
         .padding()
         .frame(minWidth: 350, maxWidth: 400, minHeight: 350, maxHeight: 400)
         .navigationTitle("appName")

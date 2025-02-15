@@ -10,39 +10,83 @@ import Luminare
 
 struct HistoryView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("historyTitle")
-                .font(.title2)
-                .padding(.horizontal)
-            List {
-                ForEach(timerViewModel.sessions) { session in
-                    VStack(alignment: .leading) {
-                        Text(session.label)
-                        
-                        HStack {
-                            Text(session.startDate, style: .date)
-                                .font(.subheadline)
+            // Pinned Sessions Section
+            if !timerViewModel.pinnedSessions.isEmpty {
+                LuminareSection("pinnedSessionsTitle") {
+                    ForEach(timerViewModel.pinnedSessions) { session in
+                        Button(action: {
+                            timerViewModel.selectedSession = session
+                            timerViewModel.currentTask = session.label
+                            timerViewModel.updateCurrentTime(session.duration)
                             
-                            Spacer()
-                            
-                            Text(session.formattedDuration)
-                                .font(.system(.subheadline, design: .monospaced))
+                            timerViewModel.togglePin(for: session) // reinstate pin status
+                        }) {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(session.label)
+                                    
+                                    HStack {
+                                        Text(session.startDate, style: .date)
+                                            .font(.subheadline)
+                                        
+                                        Spacer()
+                                        
+                                        Text(session.formattedDuration)
+                                            .font(.system(.subheadline, design: .monospaced))
+                                    }
+                                    .foregroundStyle(.secondary)
+                                }
+                                .padding(12)
+                            }
                         }
-                        .foregroundStyle(.secondary)
+                        .frame(height: 50)
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
+                }
+                .padding()
+            }
+            
+            // Unpinned Sessions Section
+            LuminareSection("historyTitle") {
+                if timerViewModel.unpinnedSessions.isEmpty {
+                    Text("startATimerCTA")
+                        .foregroundStyle(.secondary)
+                }
+                
+                ForEach(timerViewModel.unpinnedSessions) { session in
+                    Button(action: {
                         timerViewModel.selectedSession = session
                         timerViewModel.currentTask = session.label
                         timerViewModel.updateCurrentTime(session.duration)
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(session.label)
+                                
+                                HStack {
+                                    Text(session.startDate, style: .date)
+                                        .font(.subheadline)
+                                    
+                                    Spacer()
+                                    
+                                    Text(session.formattedDuration)
+                                        .font(.system(.subheadline, design: .monospaced))
+                                }
+                                .foregroundStyle(.secondary)
+                            }
+                            .padding(12)
+                        }
                     }
+                    .frame(height: 50)
                 }
             }
+            .padding()
             .disabled(timerViewModel.isRunning)
             .foregroundStyle(timerViewModel.isRunning ? .tertiary : .primary)
-            .scrollContentBackground(.hidden)
+            Spacer()
         }
+        .buttonStyle(LuminareButtonStyle())
     }
 }

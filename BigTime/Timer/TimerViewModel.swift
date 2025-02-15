@@ -30,11 +30,26 @@ class TimerViewModel: ObservableObject {
         loadSessions()
     }
     
+    var pinnedSessions: [TimerSession] {
+        sessions.filter { $0.isPinned }
+    }
+    
+    var unpinnedSessions: [TimerSession] {
+        sessions.filter { !$0.isPinned }
+    }
+    
     var formattedTime: String {
         let hours = elapsedSeconds / 3600
         let minutes = (elapsedSeconds % 3600) / 60
         let seconds = elapsedSeconds % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    func togglePin(for session: TimerSession) {
+        if let index = sessions.firstIndex(where: { $0.id == session.id }) {
+            sessions[index].isPinned.toggle()
+            saveSessions() // Save the updated sessions
+        }
     }
     
     func toggleTimer() {
@@ -59,6 +74,7 @@ class TimerViewModel: ObservableObject {
         startDate = nil
         isRunning = false
         floatingController.hideFloatingTimer()
+        currentTask = ""
     }
     
     private func startTimer() {
@@ -75,11 +91,16 @@ class TimerViewModel: ObservableObject {
     private func saveSession() {
         guard let startDate = startDate else { return }
         
+        // Check if this is an existing session being saved again
+        let existingSession = sessions.first(where: { $0.label == currentTask })
+        let isPinned = existingSession?.isPinned ?? false  // Preserve pin state
+        
         let session = TimerSession(
             id: UUID(),
             startDate: startDate,
             duration: elapsedSeconds,
-            label: currentTask.isEmpty ? "Unlabeled Session" : currentTask
+            label: currentTask.isEmpty ? "Unlabeled Session" : currentTask,
+            isPinned: isPinned  // Carry over the pin state
         )
         
         sessions.insert(session, at: 0)
